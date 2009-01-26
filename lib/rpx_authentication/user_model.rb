@@ -24,7 +24,7 @@ module RpxAuthentication
     
     module ClassMethods
       def new_from_rpx(profile_data)
-        user = RpxAuthentication.user_model.new
+        user = Object.const_get(RpxAuthentication.user_model).new
         
         # Each mapping consists of a local and the rpx side.
         # E.g. User.username = rpx_data["preferredUsername"]

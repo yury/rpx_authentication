@@ -11,8 +11,8 @@ module RpxAuthentication
     module InstanceMethods
       def create
         if (params[:token] && profile = RpxAuthentication::Gateway.authenticate(params[:token]))
-          unless (user = RpxAuthentication.user_model.find_by_identifier(profile["identifier"]))
-            user = RpxAuthentication.user_model.create_from_rpx(profile)
+          unless (user = Object.const_get(RpxAuthentication.user_model).find_by_identifier(profile["identifier"]))
+            user = Object.const_get(RpxAuthentication.user_model).create_from_rpx(profile)
           end
           
           log_user_in(user)
