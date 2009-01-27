@@ -21,7 +21,7 @@ module RpxAuthentication
         RPXNOW.token_url = '#{auth_complete_url}';
         RPXNOW.realm = '#{RpxAuthentication.app_name}';
         RPXNOW.overlay = true;
-        RPXNOW.language_preference = 'en';
+        RPXNOW.language_preference = '#{RpxAuthentication.lang}';
       </script>"
     end
     

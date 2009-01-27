@@ -1,6 +1,7 @@
 module RpxAuthentication
   # Holds the rpxnow.com API key
-  mattr_accessor :api_key, :user_model, :app_name
+  mattr_accessor :api_key, :user_model, :app_name, :lang
+
 end
 
 # We might constantly get reloaded in development mode.
