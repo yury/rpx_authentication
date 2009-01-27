@@ -13,7 +13,7 @@ module RpxAuthentication
       
       def login_successful
         flash[:notice] = "You're now logged in with the identifier #{h(current_user.identifier)}"
-        redirect_back
+        redirect_back_or_default
       end
       
       def deny_access(message)
