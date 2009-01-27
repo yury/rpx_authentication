@@ -1,3 +1,3 @@
 class User < ActiveRecord::Base
-  RpxAuthentication::UserModel
+  include RpxAuthentication::UserModel
 end

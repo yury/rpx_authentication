@@ -198,6 +198,4 @@ module AuthenticatedSystem
         :value   => @current_user.remember_token,
         :expires => @current_user.remember_token_expires_at }
     end
-    
-    include RpxAuthentication::ApplicationController
 end

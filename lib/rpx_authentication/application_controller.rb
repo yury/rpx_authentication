@@ -1,9 +1,18 @@
 module RpxAuthentication
   module ApplicationController
+    
+    def rpx_iframe
+      "<iframe src='https://#{RpxAuthentication.app_name}.rpxnow.com/openid/embed?token_url=#{CGI::escape(auth_complete_url)}'
+          scrolling='no' frameBorder='no' style='width:400px;height:240px;'>
+      </iframe>"
+    end
+    
     def self.included(base)
       base.class_eval do
         include InstanceMethods
       end
+
+      base.send :helper_method, :rpx_iframe if base.respond_to? :helper_method
     end
     
     module InstanceMethods
@@ -13,13 +22,13 @@ module RpxAuthentication
       
       def login_successful
         flash[:notice] = "You're now logged in with the identifier #{h(current_user.identifier)}"
-        redirect_back_or_default
+        redirect_back_or_default("/")
       end
       
       def deny_access(message)
         flash[:error] = message
-        redirect_to(new_session_url())
-      end
+        redirect_to new_session_url
+      end      
     end
   end
 end
