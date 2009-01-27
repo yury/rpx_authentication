@@ -5,6 +5,7 @@ class CreateAuthTables < ActiveRecord::Migration
       t.string :given_name
       t.string :family_name
       t.string :identifier
+      t.string :username
       t.string :email
       t.string :gender
       t.datetime :birthdate
