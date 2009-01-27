@@ -7,12 +7,30 @@ module RpxAuthentication
       </iframe>"
     end
     
+    def rpx_link title = "Sign in"
+      "<a class='rpxnow' onclick='return false;'
+         href='https://photoalbum.rpxnow.com/openid/v2/signin?token_url=#{CGI::escape(auth_complete_url)}'>
+         #{title}
+      </a>"
+    end
+    
+    def rpx_javascript
+      "<script src='https://rpxnow.com/openid/v2/widget'
+              type='text/javascript'></script>
+      <script type='text/javascript'>
+        RPXNOW.token_url = '#{auth_complete_url}';
+        RPXNOW.realm = '#{RpxAuthentication.app_name}';
+        RPXNOW.overlay = true;
+        RPXNOW.language_preference = 'en';
+      </script>"
+    end
+    
     def self.included(base)
       base.class_eval do
         include InstanceMethods
       end
 
-      base.send :helper_method, :rpx_iframe if base.respond_to? :helper_method
+      base.send :helper_method, :rpx_iframe, :rpx_javascript, :rpx_link if base.respond_to? :helper_method
     end
     
     module InstanceMethods
